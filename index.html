@@ -10,9 +10,29 @@
 
 <body>
   <main>
-    <h1>My profile</h1>
+    <div class="profile-header">
+      <h1>My profile</h1>
+      <button id="follow-btn" class="follow-button">Seguir</button>
+    </div>
 
     <div id="clock-container">
+      <div class="clock">
+        <div class="clock-face">
+          <!-- Números do relógio -->
+          <div class="number number-12">12</div>
+          <div class="number number-3">3</div>
+          <div class="number number-6">6</div>
+          <div class="number number-9">9</div>
+          
+          <!-- Ponteiros -->
+          <div class="hand hour-hand" id="hour-hand"></div>
+          <div class="hand minute-hand" id="minute-hand"></div>
+          <div class="hand second-hand" id="second-hand"></div>
+          
+          <!-- Centro do relógio -->
+          <div class="center-dot"></div>
+        </div>
+      </div>
     </div>
   </main>
 
