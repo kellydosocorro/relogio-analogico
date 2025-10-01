@@ -1,0 +1,224 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+main {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.profile-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+h1 {
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 300;
+  text-align: center;
+}
+
+.follow-button {
+  background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.follow-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+  background: linear-gradient(45deg, #ee5a24, #ff6b6b);
+}
+
+.follow-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(255, 107, 107, 0.2);
+}
+
+.follow-button.following {
+  background: linear-gradient(45deg, #00b894, #00a085);
+  box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3);
+}
+
+.follow-button.following:hover {
+  background: linear-gradient(45deg, #00a085, #00b894);
+  box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+}
+
+#clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.clock {
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(5px);
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  position: relative;
+  box-shadow: 
+    0 0 50px rgba(255, 255, 255, 0.1),
+    inset 0 0 50px rgba(255, 255, 255, 0.05);
+}
+
+.clock-face {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.number {
+  position: absolute;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.number-12 {
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.number-3 {
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+}
+
+.number-6 {
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.number-9 {
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+}
+
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom center;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.hour-hand {
+  width: 6px;
+  height: 80px;
+  background: linear-gradient(to top, #ff6b6b, #ff8e8e);
+  margin-left: -3px;
+  z-index: 3;
+}
+
+.minute-hand {
+  width: 4px;
+  height: 110px;
+  background: linear-gradient(to top, #74b9ff, #a8d8ff);
+  margin-left: -2px;
+  z-index: 2;
+}
+
+.second-hand {
+  width: 2px;
+  height: 120px;
+  background: linear-gradient(to top, #fdcb6e, #ffeaa7);
+  margin-left: -1px;
+  z-index: 4;
+  transition: transform 0.1s ease-in-out;
+}
+
+.center-dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 16px;
+  height: 16px;
+  background: radial-gradient(circle, #fff, #ddd);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+/* Marcações das horas */
+.clock::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: 
+    radial-gradient(circle at 50% 10px, rgba(255,255,255,0.8) 2px, transparent 2px),
+    radial-gradient(circle at 10px 50%, rgba(255,255,255,0.8) 2px, transparent 2px),
+    radial-gradient(circle at 50% calc(100% - 10px), rgba(255,255,255,0.8) 2px, transparent 2px),
+    radial-gradient(circle at calc(100% - 10px) 50%, rgba(255,255,255,0.8) 2px, transparent 2px);
+}
+
+@media (max-width: 768px) {
+  .profile-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  .clock {
+    width: 250px;
+    height: 250px;
+  }
+  
+  .hour-hand {
+    height: 65px;
+  }
+  
+  .minute-hand {
+    height: 90px;
+  }
+  
+  .second-hand {
+    height: 100px;
+  }
+}
