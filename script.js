@@ -1,14 +1,14 @@
 // Função para atualizar o relógio
 function updateClock() {
     const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes();
-    const seconds = now.getSeconds();
+    const seconds = now.getSeconds() + now.getMilliseconds() / 1000; // segundos com fração
+    const minutes = now.getMinutes() + (seconds / 60); // minutos com fração
+    const hours = (now.getHours() % 12) + (minutes / 60); // horas com fração
     
     // Calcular os ângulos dos ponteiros
-    const secondAngle = (seconds * 6) - 90; // 6 graus por segundo
-    const minuteAngle = (minutes * 6) + (seconds * 0.1) - 90; // 6 graus por minuto + suavização
-    const hourAngle = ((hours % 12) * 30) + (minutes * 0.5) - 90; // 30 graus por hora + suavização
+    const secondAngle = seconds * 6; // 6 graus por segundo, 0° aponta para 12h
+    const minuteAngle = minutes * 6; // 6 graus por minuto
+    const hourAngle = hours * 30; // 30 graus por hora
     
     // Aplicar rotação aos ponteiros
     const hourHand = document.getElementById('hour-hand');
