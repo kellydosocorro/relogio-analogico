@@ -98,15 +98,15 @@ function addClockEffects() {
         // Efeito de brilho no hover
         clock.addEventListener('mouseenter', function() {
             this.style.boxShadow = `
-                0 0 80px rgba(255, 255, 255, 0.2),
-                inset 0 0 80px rgba(255, 255, 255, 0.1)
+                0 0 80px rgba(255, 215, 0, 0.3),
+                inset 0 0 80px rgba(255, 215, 0, 0.15)
             `;
         });
-        
+
         clock.addEventListener('mouseleave', function() {
             this.style.boxShadow = `
-                0 0 50px rgba(255, 255, 255, 0.1),
-                inset 0 0 50px rgba(255, 255, 255, 0.05)
+                0 0 50px rgba(255, 215, 0, 0.2),
+                inset 0 0 50px rgba(255, 215, 0, 0.1)
             `;
         });
     }
