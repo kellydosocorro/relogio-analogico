@@ -126,6 +126,9 @@ function init() {
     // Adicionar efeitos visuais
     addClockEffects();
     
+    // Inicializar controles de cor
+    initColorPickers();
+    
     console.log('Relógio analógico inicializado com sucesso!');
 }
 
@@ -140,4 +143,62 @@ if (document.readyState === 'loading') {
 function debugClock() {
     const now = new Date();
     console.log(`Hora atual: ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`);
+}
+
+// Inicializa os inputs de cor e vincula mudanças aos ponteiros
+function initColorPickers() {
+    const hourColorInput = document.getElementById('hour-color');
+    const minuteColorInput = document.getElementById('minute-color');
+    const secondColorInput = document.getElementById('second-color');
+    const hourHand = document.getElementById('hour-hand');
+    const minuteHand = document.getElementById('minute-hand');
+    const secondHand = document.getElementById('second-hand');
+
+    if (hourColorInput && hourHand) {
+        // aplica cor inicial
+        setHandColor(hourHand, hourColorInput.value, 'hour');
+        hourColorInput.addEventListener('input', (e) => {
+            setHandColor(hourHand, e.target.value, 'hour');
+        });
+    }
+
+    if (minuteColorInput && minuteHand) {
+        setHandColor(minuteHand, minuteColorInput.value, 'minute');
+        minuteColorInput.addEventListener('input', (e) => {
+            setHandColor(minuteHand, e.target.value, 'minute');
+        });
+    }
+
+    if (secondColorInput && secondHand) {
+        setHandColor(secondHand, secondColorInput.value, 'second');
+        secondColorInput.addEventListener('input', (e) => {
+            setHandColor(secondHand, e.target.value, 'second');
+        });
+    }
+}
+
+// Aplica uma cor sólida mantendo leve efeito de luz
+function setHandColor(handEl, hexColor, type) {
+    const light = lightenHex(hexColor, 0.25);
+    handEl.style.background = `linear-gradient(to top, ${hexColor}, ${light})`;
+}
+
+// Utilitário simples: clarear cor hex
+function lightenHex(hex, amount) {
+    const { r, g, b } = hexToRgb(hex);
+    const nr = Math.round(r + (255 - r) * amount);
+    const ng = Math.round(g + (255 - g) * amount);
+    const nb = Math.round(b + (255 - b) * amount);
+    return rgbToHex(nr, ng, nb);
+}
+
+function hexToRgb(hex) {
+    const clean = hex.replace('#', '');
+    const bigint = parseInt(clean.length === 3 ? clean.split('').map(c => c + c).join('') : clean, 16);
+    return { r: (bigint >> 16) & 255, g: (bigint >> 8) & 255, b: bigint & 255 };
+}
+
+function rgbToHex(r, g, b) {
+    const toHex = (v) => v.toString(16).padStart(2, '0');
+    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
 }
