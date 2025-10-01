@@ -129,6 +129,9 @@ function init() {
     // Inicializar controles de cor
     initColorPickers();
     
+    // Inicializar drawer inferior
+    initBottomDrawer();
+
     console.log('Relógio analógico inicializado com sucesso!');
 }
 
@@ -201,4 +204,43 @@ function hexToRgb(hex) {
 function rgbToHex(r, g, b) {
     const toHex = (v) => v.toString(16).padStart(2, '0');
     return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
+// Drawer inferior: abre/fecha e gerencia acessibilidade
+function initBottomDrawer() {
+    const toggleBtn = document.getElementById('drawer-toggle');
+    const drawer = document.getElementById('about-drawer');
+    if (!toggleBtn || !drawer) return;
+
+    const openDrawer = () => {
+        drawer.classList.add('open');
+        drawer.setAttribute('aria-hidden', 'false');
+        toggleBtn.setAttribute('aria-expanded', 'true');
+        toggleBtn.querySelector('.drawer-caret')?.replaceChildren(document.createTextNode('▾'));
+    };
+
+    const closeDrawer = () => {
+        drawer.classList.remove('open');
+        drawer.setAttribute('aria-hidden', 'true');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        toggleBtn.querySelector('.drawer-caret')?.replaceChildren(document.createTextNode('▴'));
+    };
+
+    const toggle = () => {
+        if (drawer.classList.contains('open')) {
+            closeDrawer();
+        } else {
+            openDrawer();
+        }
+    };
+
+    toggleBtn.addEventListener('click', toggle);
+
+    // Fechar com ESC quando aberto
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && drawer.classList.contains('open')) {
+            closeDrawer();
+            toggleBtn.focus();
+        }
+    });
 }
