@@ -247,26 +247,29 @@ h1 {
 .hour-hand {
   width: 6px;
   height: 80px;
-  background: linear-gradient(to top, #ff6b6b, #ff8e8e);
+  background: linear-gradient(to top, #e74c3c, #ff6b6b, #ff8e8e);
   margin-left: -3px;
   z-index: 3;
+  box-shadow: 0 0 15px rgba(231, 76, 60, 0.6);
 }
 
 .minute-hand {
   width: 4px;
   height: 110px;
-  background: linear-gradient(to top, #74b9ff, #a8d8ff);
+  background: linear-gradient(to top, #3498db, #74b9ff, #a8d8ff);
   margin-left: -2px;
   z-index: 2;
+  box-shadow: 0 0 15px rgba(52, 152, 219, 0.6);
 }
 
 .second-hand {
   width: 2px;
   height: 120px;
-  background: linear-gradient(to top, #fdcb6e, #ffeaa7);
+  background: linear-gradient(to top, #f39c12, #fdcb6e, #ffeaa7);
   margin-left: -1px;
   z-index: 4;
   transition: transform 0.1s ease-in-out;
+  box-shadow: 0 0 15px rgba(243, 156, 18, 0.6);
 }
 
 .center-dot {
