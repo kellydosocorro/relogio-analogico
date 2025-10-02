@@ -15,9 +15,14 @@ function updateClock() {
     const minuteHand = document.getElementById('minute-hand');
     const secondHand = document.getElementById('second-hand');
     
-    if (hourHand) hourHand.style.transform = `rotate(${hourAngle}deg)`;
-    if (minuteHand) minuteHand.style.transform = `rotate(${minuteAngle}deg)`;
-    if (secondHand) secondHand.style.transform = `rotate(${secondAngle}deg)`;
+    function setRotation(element, angle) {
+    if (element) {
+        element.style.transform = `rotate(${angle}deg)`;
+    }}
+    
+    setRotation(hourHand, hourAngle);
+    setRotation(minuteHand, minuteAngle);
+    setRotation(secondHand, secondAngle);
 }
 
 // Função para o botão seguir
